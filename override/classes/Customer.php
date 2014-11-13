@@ -22,7 +22,7 @@ class Customer extends CustomerCore
 	public function __construct($id = null)
 	{
 		$this->id_default_group = (int)Configuration::get('PS_CUSTOMER_GROUP');
-		self::$definition['fields']['username'] = array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'required' => true, 'size' => 32);
+		self::$definition['fields']['username'] = array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'size' => 32);
 		parent::__construct($id);
 	}
 }
