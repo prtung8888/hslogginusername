@@ -90,7 +90,7 @@ class HsLogginUsername extends Module
 	 * @param string $username e-mail
 	 * @return boolean
 	 */
-	public static function usernameExists($username)
+	protected function usernameExists($username)
 	{
 		$sql = 'SELECT `username`
 				FROM `'._DB_PREFIX_.'customer`
