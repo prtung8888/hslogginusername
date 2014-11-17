@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Logging in with username
  *
@@ -33,8 +32,7 @@ class HsLogginUsername extends Module
 				$this->installTables() &&
 				$this->registerHook('actionBeforeAuthentication') &&
 				$this->registerHook('displayCustomerAccountForm') &&
-				$this->registerHook('actionBeforeSubmitAccount')
-				;
+				$this->registerHook('actionBeforeSubmitAccount');
 	}
 
 	protected function installTables()
@@ -79,7 +77,8 @@ class HsLogginUsername extends Module
 			$this->context->controller->errors[] = Tools::displayError('Your username has been taken.', false);
 	}
 
-	protected function does_column_exist($column_name, $table_name) {
+	protected function does_column_exist($column_name, $table_name)
+	{
 		$sql = 'SHOW COLUMNS FROM `'._DB_PREFIX_.''.$table_name.'` LIKE "'.$column_name.'"';
 		return (bool) Db::getInstance()->executeS($sql);
 	}
@@ -96,6 +95,6 @@ class HsLogginUsername extends Module
 				FROM `'._DB_PREFIX_.'customer`
 				WHERE `username` = \''.pSQL($username).'\'
 					'.Shop::addSqlRestriction(Shop::SHARE_CUSTOMER);
-		return (boolean) Db::getInstance()->getValue($sql);
+		return (boolean)Db::getInstance()->getValue($sql);
 	}
 }

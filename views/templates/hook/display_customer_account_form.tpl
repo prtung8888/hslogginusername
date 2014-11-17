@@ -7,6 +7,6 @@
  *}
 
 <div class="required form-group">
-	<label for="username">{l s='Username'} <sup>*</sup></label>
+	<label for="username">{l s='Username' mod='hslogginusername'} <sup>*</sup></label>
 	<input type="text" class="is_required validate form-control" data-validate="isGenericName" id="username" name="username" value="{if isset($smarty.post.username)}{$smarty.post.username}{/if}" />
 </div>

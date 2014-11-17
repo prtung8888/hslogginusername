@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Logging in with username
  *
