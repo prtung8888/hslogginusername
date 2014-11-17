@@ -80,7 +80,7 @@ class HsLogginUsername extends Module
 	protected function does_column_exist($column_name, $table_name)
 	{
 		$sql = 'SHOW COLUMNS FROM `'._DB_PREFIX_.''.$table_name.'` LIKE "'.$column_name.'"';
-		return (bool) Db::getInstance()->executeS($sql);
+		return (bool)Db::getInstance()->executeS($sql);
 	}
 
 	/**
