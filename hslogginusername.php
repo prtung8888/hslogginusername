@@ -37,7 +37,7 @@ class HsLogginUsername extends Module
 
 	protected function installTables()
 	{
-		if (!$this->does_column_exist('username', 'customer'))
+		if (!$this->columnExits('username', 'customer'))
 		{
 			$sql_add_username	 = 'ALTER TABLE `'._DB_PREFIX_.'customer` ADD COLUMN `username` VARCHAR(64) NULL AFTER `email`';
 			return Db::getInstance()->query($sql_add_username);
@@ -54,7 +54,13 @@ class HsLogginUsername extends Module
 		$username_or_email = trim(Tools::getValue('email'));
 		if (!empty($username_or_email))
 		{
-			$sql_check_username = 'SELECT `email` FROM `'._DB_PREFIX_.'customer` WHERE `username` LIKE "'.$username_or_email.'" OR `email` LIKE "'.$username_or_email.'"';
+			$sql_check_username = '
+				SELECT
+					`email`
+				FROM
+					`'._DB_PREFIX_.'customer`
+				WHERE `username` LIKE "'.$username_or_email.'"
+					OR `email` LIKE "'.$username_or_email.'"';
 			$email = Db::getInstance()->getValue($sql_check_username);
 			if (empty($email))
 				$this->context->controller->errors[] = Tools::displayError('Authentication failed.');
@@ -77,7 +83,7 @@ class HsLogginUsername extends Module
 			$this->context->controller->errors[] = Tools::displayError('Your username has been taken.', false);
 	}
 
-	protected function does_column_exist($column_name, $table_name)
+	protected function columnExits($column_name, $table_name)
 	{
 		$sql = 'SHOW COLUMNS FROM `'._DB_PREFIX_.''.$table_name.'` LIKE "'.$column_name.'"';
 		return (bool)Db::getInstance()->executeS($sql);
